@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import ChatBar from './ChatBar.jsx';
 import MessageList from './Messagelist.jsx';
 
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -20,8 +22,11 @@ class App extends Component {
     }
   }
 
+  
+
   componentDidMount() {
     console.log("componentDidMount <App />");
+    const socket = new WebSocket("ws://localhost:3001");
     setTimeout(() => {
       console.log("Simulating incoming message");
       // Add a new message to the list of messages in the data store
