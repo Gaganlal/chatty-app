@@ -30,7 +30,9 @@ wss.on('connection', (ws) => {
     ws.on('close', () => console.log('Client disconnected'));
 
     ws.on('message', (message) => {
-      console.log("Got a message: ", message)
+      //data was sent as a string but need to parse so it can be read and writable"
+      var myParse = JSON.parse(message)
+      console.log(`User ${myParse.username} said ${myParse.content}`)
       users.forEach((socket) => {
         // send this message to every socket
         socket.send(message);

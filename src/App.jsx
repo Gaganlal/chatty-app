@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      socket: null,
       currentUser: {name: "bob"},
       messages: [
         {
@@ -26,7 +27,12 @@ class App extends Component {
 
   componentDidMount() {
     console.log("componentDidMount <App />");
+    // creating a socket and connecting to ws server @ 3001
     const socket = new WebSocket("ws://localhost:3001");
+    //when this connection is made, then updating state to include this socket
+    socket.onopen = function (event) {
+      this.setState({socket: socket}); 
+    }.bind(this);
     setTimeout(() => {
       console.log("Simulating incoming message");
       // Add a new message to the list of messages in the data store
@@ -40,8 +46,11 @@ class App extends Component {
 
   addMessage = (name, message) => {
     const newMessage = {username: name, content: message}
-    const messages = this.state.messages.concat(newMessage)
+    // when trying to send this data to the ws server, it can only take strings, so need to convert data to string
+    var myJSON = JSON.stringify(newMessage)
+    this.state.socket.send(myJSON)
 
+    const messages = this.state.messages.concat(newMessage)
     this.setState({messages: messages})
   }
   
