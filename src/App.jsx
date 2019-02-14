@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       socket: null,
-      currentUser: {name: "bob"},
+      currentUser: {name: null},
       messages: []
     }
   }
