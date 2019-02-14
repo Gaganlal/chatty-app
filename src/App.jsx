@@ -22,7 +22,12 @@ class App extends Component {
     const socket = new WebSocket("ws://localhost:3001");
 
     socket.onmessage = (event) => {
-      console.log(JSON.parse(event.data))
+      //parsed the data bc it came in as a string
+      const parsedEvent = JSON.parse(event.data)
+      // added this new data to the state without removing state completely
+      const newMessages = this.state.messages.concat(parsedEvent)
+      // updated state to include new data but also include old
+      this.setState({messages: newMessages})
       // code to handle incoming message
     }
     //when this connection is made, then updating state to include this socket
