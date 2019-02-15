@@ -14,8 +14,16 @@ const server = express()
   .listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT }`));
 
   const wss = new SocketServer({ server });
+
   
   wss.on('connection', function connection(ws) {
+    const counter = {
+      type: "counter",
+    count: wss.clients.size
+  }
+    wss.clients.forEach(function each(client) {
+      client.send(JSON.stringify(counter));
+    })
     ws.on('message', function incoming(data) {
       const newData = JSON.parse(data)
       const id = uuidv4();

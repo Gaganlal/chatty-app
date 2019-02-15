@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ChatBar from './ChatBar.jsx';
 import MessageList from './Messagelist.jsx';
+import Nav from './nav.jsx'
 
 
 
@@ -10,7 +11,8 @@ class App extends Component {
     this.state = {
       socket: null,
       currentUser: {name: "Anon"},
-      messages: []
+      messages: [],
+      counter: 0
     }
   }
 
@@ -25,6 +27,11 @@ class App extends Component {
       //parsed the data bc it came in as a string
       const parsedEvent = JSON.parse(event.data)
       
+      if(parsedEvent.type === "counter") {
+
+        const count = parsedEvent.count;
+        this.setState({counter: count})
+      }
       // added this new data to the state without removing state completely
       const newMessages = this.state.messages.concat(parsedEvent)
       this.setState({messages: newMessages})
@@ -73,6 +80,7 @@ class App extends Component {
 
     return (
       <div>
+      <Nav count={this.state.counter} />  
       <ChatBar userName={this.state.currentUser.name} addMessage={this.addMessage} changeName={this.changeName} />
       <MessageList messages={this.state.messages} />
       </div>
