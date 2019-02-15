@@ -47,6 +47,18 @@ const server = express()
         break;
         };
       });
+      // when a user dissconnects, must update new counter, and send it in same format to react app
+    ws.on('close', function close() {
+      const newCount= wss.clients.size
+      wss.clients.forEach(function each(client) {
+        client.send(JSON.stringify({
+          count: newCount,
+          type: "counter"
+        }));
+      })
+    });
+      
   });
+
 
   
