@@ -18,7 +18,7 @@ A client-side single-page application built with ReactJS, Webpack, Babel, Node.j
 
 
 ## Dependencies
-cd 
+
 - Node.js
 - Express
 - React
