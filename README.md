@@ -1,45 +1,50 @@
-React Boilerplate
-=====================
 
-A minimal and light dev environment for ReactJS.
 
-### Usage
 
-Clone the boilerplate and create your own git repo.
+# Chatyapp Project
 
-```
-git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
-cd react-simple-boilerplate
-git remote rm origin
-git remote add origin [YOUR NEW REPOSITORY]
-# Manually update your package.json file
-```
+A client-side single-page application built with ReactJS, Webpack, Babel, Node.js and Web Sockets. The client-side application communicates with a server via WebSockets for multi-user real-time updates. No persistent database is involved.
 
-Install the dependencies and start the server.
+## Final Product
 
-```
-npm install
-npm start
-open http://localhost:3000
-```
+!["Screenshot of "](https://github.com/Gaganlal/tinyapp/blob/master/docs/:URLS.png?raw=true)
+!["Screenshot of "](https://github.com/Gaganlal/tinyapp/blob/master/docs/:login.png?raw=true)
+!["Screenshot of "](https://github.com/Gaganlal/tinyapp/blob/master/docs/:register.png?raw=true)
+!["Screenshot of "](https://github.com/Gaganlal/tinyapp/blob/master/docs/:urls:new.png?raw=true)
 
-### Static Files
 
-You can store static files like images, fonts, etc in the `build` folder.
 
-For example, if you copy a file called my_image.png into the build folder you can access it using `http://localhost:3000/build/my_image.png`.
 
-### Linting
-
-This boilerplate project includes React ESLint configuration.
-
-```
-npm run lint
-```
-
-### Dependencies
-
-* React
-* Webpack
+## Dependencies
+cd 
+- Node.js
+- Express
+- React
+- React-dom
+- WS
+- UUID
+- Webpack
 * [babel-loader](https://github.com/babel/babel-loader)
-* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+
+## Getting Started
+
+First, clone the repo to your local machine
+
+```
+1st Server:
+- Install all dependencies (using `npm install` command).
+- Run the development web server using the `npm start` command.
+-open http://localhost:3000 
+
+2nd Server:
+-cd to `chatty_server`.
+- Install all dependencies (using `npm install` command).
+- Run the development web server using the `npm start` command. 
+- open http://localhost:3000
+
+```
+
+
+
+
+
