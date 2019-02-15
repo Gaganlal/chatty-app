@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       socket: null,
-      currentUser: {name: null},
+      currentUser: {name: "Anon"},
       messages: []
     }
   }
@@ -24,11 +24,10 @@ class App extends Component {
     socket.onmessage = (event) => {
       //parsed the data bc it came in as a string
       const parsedEvent = JSON.parse(event.data)
+      
       // added this new data to the state without removing state completely
       const newMessages = this.state.messages.concat(parsedEvent)
-      // updated state to include new data but also include old
       this.setState({messages: newMessages})
-      // code to handle incoming message
     }
     //when this connection is made, then updating state to include this socket
     socket.onopen = function (event) {
@@ -36,24 +35,34 @@ class App extends Component {
     }.bind(this);
 
   
-    setTimeout(() => {
-      console.log("Simulating incoming message");
-      // Add a new message to the list of messages in the data store
-      const newMessage = {id: 3, username: "Michelle", content: "Hello there!"};
-      const messages = this.state.messages.concat(newMessage)
-      // Update the state of the app component.
-      // Calling setState will trigger a call to render() in App and all child components.
-      this.setState({messages: messages})
-    }, 3000);
   }
 
   
+// seperate function when user changes his name and clicks enter!
+
+  changeName = (name) => {
+    const originalName = this.state.currentUser.name;
+    const newMessage = {
+      username: this.state.currentUser.name, 
+      content: `${originalName} changes their name to ${name}`,
+      type: 'postNotification'
+    }
+ 
+    const inputObject = {
+      name: name
+    }
+    this.setState({currentUser: inputObject})
+    this.state.socket.send(JSON.stringify(newMessage))
+
+  }
 
 
-  addMessage = (name, message) => {
-    const newMessage = {username: name, content: message}
+  addMessage = (message) => {
+    // adding type: incoming message to this variable
+    const newMessage = {username: this.state.currentUser.name, content: message, type: 'postMessage'}
     // when trying to send this data to the ws server, it can only take strings, so need to convert data to string
     var myJSON = JSON.stringify(newMessage)
+    //send data to ws server
     this.state.socket.send(myJSON)
 
     // const messages = this.state.messages.concat(newMessage)
@@ -64,7 +73,7 @@ class App extends Component {
 
     return (
       <div>
-      <ChatBar userName={this.state.currentUser.name} addMessage={this.addMessage} />
+      <ChatBar userName={this.state.currentUser.name} addMessage={this.addMessage} changeName={this.changeName} />
       <MessageList messages={this.state.messages} />
       </div>
     );

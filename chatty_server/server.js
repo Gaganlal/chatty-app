@@ -23,9 +23,19 @@ const server = express()
       
       // Broadcast to everyone else.
       console.log("data being parsed: ",newData)
-      wss.clients.forEach(function each(client) {
-          client.send(JSON.stringify(newData));
+      switch(newData.type) {
+        case "postMessage": 
+        newData.type= "incomingMessage"
+         wss.clients.forEach(function each(client) {
+           client.send(JSON.stringify(newData));
+         })
+        break;
+        case "postNotification": 
+        newData.type="incomingNotification"
+          wss.clients.forEach(function each(client) {
+            client.send(JSON.stringify(newData));
+          });  
+        break;
+        };
       });
-    });
   });
-  
