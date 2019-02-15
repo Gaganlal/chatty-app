@@ -17,6 +17,7 @@ const server = express()
 
   
   wss.on('connection', function connection(ws) {
+    //create a counter obj that is sent to react app
     const counter = {
       type: "counter",
     count: wss.clients.size
@@ -24,13 +25,13 @@ const server = express()
     wss.clients.forEach(function each(client) {
       client.send(JSON.stringify(counter));
     })
+    // any incoming message, add an Id to the obj
     ws.on('message', function incoming(data) {
       const newData = JSON.parse(data)
       const id = uuidv4();
       newData["id"]= id;
       
-      // Broadcast to everyone else.
-      console.log("data being parsed: ",newData)
+      // determine which type of data is coming in, so server can broadcast a certain type of data
       switch(newData.type) {
         case "postMessage": 
         newData.type= "incomingMessage"
@@ -47,3 +48,5 @@ const server = express()
         };
       });
   });
+
+  

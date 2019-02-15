@@ -26,9 +26,8 @@ class App extends Component {
     socket.onmessage = (event) => {
       //parsed the data bc it came in as a string
       const parsedEvent = JSON.parse(event.data)
-      
+      // just for the counter, if it is a counter type, then change state to have the value.
       if(parsedEvent.type === "counter") {
-
         const count = parsedEvent.count;
         this.setState({counter: count})
       }
@@ -54,26 +53,24 @@ class App extends Component {
       content: `${originalName} changes their name to ${name}`,
       type: 'postNotification'
     }
- 
+    // since the currentUser format is an obj value, need to also setState with same format
     const inputObject = {
       name: name
     }
     this.setState({currentUser: inputObject})
+    //send newMessage to ws server through socket
     this.state.socket.send(JSON.stringify(newMessage))
 
   }
 
-
+  // function that sends the message to ws server
   addMessage = (message) => {
-    // adding type: incoming message to this variable
+    // adding type: incoming message, to this variable
     const newMessage = {username: this.state.currentUser.name, content: message, type: 'postMessage'}
     // when trying to send this data to the ws server, it can only take strings, so need to convert data to string
     var myJSON = JSON.stringify(newMessage)
     //send data to ws server
     this.state.socket.send(myJSON)
-
-    // const messages = this.state.messages.concat(newMessage)
-    // this.setState({messages: messages})
   }
   
   render() {

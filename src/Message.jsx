@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+//this function focuses on the type of incoming message. If it is "incomingMessage" then display normally on screen, else display a notification that name changed.
 function Message (props) {
   if(props.message.type === "incomingMessage") {
     return (
@@ -13,7 +14,7 @@ function Message (props) {
   else {
     return (
       <div className="message">
-        <span> {props.message.content}</span>
+        <span className="notification"> <strong>{props.message.content}</strong></span>
       
       </div>
     );

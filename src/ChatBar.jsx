@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
 function ChatBar(props) {
-
+  // this function focuses on just the messages being displayed.
   const onSubmit = (event) => {
     event.preventDefault();
     const message = event.target.elements.messaging.value;
     props.addMessage(message);
   }
-
+  //this function focuses on if the user changes his name and hits enter
   const changeName = (event) => {
     if(event.key === "Enter"){
       event.preventDefault();

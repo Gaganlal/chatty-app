@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+// class was created to include the user count. 
 class Nav extends React.Component{
   render() {
 
