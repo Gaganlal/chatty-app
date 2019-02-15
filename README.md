@@ -10,13 +10,16 @@ A client-side single-page application built with ReactJS, Webpack, Babel, Node.j
 \
 !["Screenshot of when another user connects and messages "](https://github.com/Gaganlal/chatty-app/blob/master/docs/When%20another%20user%20connects%20and%20messages.png?raw=true)
 
--When any connected user sends a chat message, all connected users receive and display the message
--When any connected user changes their name, all connected users are notified of the name change
--Notifications are styled differently from chat messages
--Header will display the count of connected users
--When the number of connected users changes, this count will be updated for all connected users
+## Description
+- When any connected user sends a chat message, all connected users receive and display the message
 
+- When any connected user changes their name, all connected users are notified of the name change
 
+- Notifications are styled differently from chat messages
+
+- Header will display the count of connected users
+
+- When the number of connected users changes, this count will be updated for all connected users
 
 ## Dependencies
 
