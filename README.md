@@ -7,13 +7,14 @@ A client-side single-page application built with ReactJS, Webpack, Babel, Node.j
 
 ## Final Product
 
-!["Screenshot of landing page "](https://github.com/Gaganlal/chatty-app/blob/master/docs/landing%20page.png?raw=true)
-!["Screenshot of posting message"](https://github.com/Gaganlal/chatty-app/blob/master/docs/posting%20message.png?raw=true)
-!["Screenshot of changing username "](https://github.com/Gaganlal/chatty-app/blob/master/docs/changing%20username.png?raw=true)
-!["Screenshot of posting message with new username"](https://github.com/Gaganlal/chatty-app/blob/master/docs/posting%20with%20new%20username.png?raw=true)
+\
 !["Screenshot of when another user connects and messages "](https://github.com/Gaganlal/chatty-app/blob/master/docs/When%20another%20user%20connects%20and%20messages.png?raw=true)
-!["Screenshot of number of users connected"](https://github.com/Gaganlal/chatty-app/blob/master/docs/Displaying%20%23%20of%20users.png?raw=true)
 
+-When any connected user sends a chat message, all connected users receive and display the message
+-When any connected user changes their name, all connected users are notified of the name change
+-Notifications are styled differently from chat messages
+-Header will display the count of connected users
+-When the number of connected users changes, this count will be updated for all connected users
 
 
 
